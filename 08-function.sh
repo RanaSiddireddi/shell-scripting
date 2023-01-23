@@ -1,10 +1,10 @@
 #!/bin/bash
 
-sample() {
-    echo " this is sample function"
-}
+# sample() {
+#     echo " this is sample function"
+# }
 
-sample 
+# sample 
 
 stat(){
     echo "number of sessions opened : $(who | wc -l)"
