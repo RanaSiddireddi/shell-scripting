@@ -7,7 +7,7 @@ sample() {
 sample 
 
 stat(){
-    echo "number of sessions opened : $(who | wc -1)"
+    echo "number of sessions opened : $(who | wc -l)"
     echo "todays date is : $(date +%F)"
     echo "load average of the system in last 1 minute: $(uptime | awk -F : '{print $5}' | awk -F , '{print $1}')"
 }
