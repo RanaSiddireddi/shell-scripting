@@ -43,7 +43,7 @@ stat $?
 
 echo -n "starting nginx :"
 systemctl enable nginx  &>> /tmp/frontend.log
-systemctl start nginx   &>> /tmp/frontend.log
+systemctl restart nginx   &>> /tmp/frontend.log
 stat $?
 
 
