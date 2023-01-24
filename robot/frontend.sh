@@ -1,6 +1,6 @@
 #!/bin/bash
 
-UID=$(id -u)
+ID=$(id -u)
 
 if [ $UID -ne 0 ] ; then
     echo -e "\e[31m you need to be root user or with sudo priviledge \e[0m"
