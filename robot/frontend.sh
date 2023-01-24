@@ -1,6 +1,6 @@
 #!/bin/bash
 
-COMPONENT = frontend
+COMPONENT=frontend
 
 status() {
     if [ $1 -eq 0 ] ; then
