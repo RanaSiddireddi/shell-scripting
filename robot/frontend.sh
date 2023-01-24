@@ -48,6 +48,7 @@ systemctl enable nginx  &>> /tmp/$COMPONENT.log
 systemctl restart nginx   &>> /tmp/$COMPONENT.log
 stat $?
 
+echo -n "\e[32m___________$COMPONENT Configuration complete_____________ \e[0m"
 
 # systemctl daemon-reload
 # systemctl restart nginx
