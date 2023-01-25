@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 COMPONENT=mongodb
 
 #source loads a file and this has all common patterns
