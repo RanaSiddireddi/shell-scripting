@@ -1,3 +1,5 @@
+#!/bin/bash
+
 LOGFILE=/tmp/$COMPONENT.log
 
 ID=$(id -u)
