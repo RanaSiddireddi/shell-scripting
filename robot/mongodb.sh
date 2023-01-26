@@ -4,7 +4,7 @@ COMPONENT=mongodb
 
 #source loads a file and this has all common patterns
 
-source common.sh 
+source "robot/common.sh" 
 
 echo -n "downloading the $COMPONENT :"
 curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/stans-robot-project/mongodb/main/mongo.repo
