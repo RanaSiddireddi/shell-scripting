@@ -15,7 +15,7 @@ echo -n "installing $COMPONENT :"
 yum install -y mongodb-org &>> $LOGFILE
 stat $?
 
-echo "whitelisting mongo"
+echo -n "whitelisting mongo :"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 stat $?
 
