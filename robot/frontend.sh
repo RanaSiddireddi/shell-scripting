@@ -2,7 +2,7 @@
 
 COMPONENT=frontend
 
-source common.sh
+source "robot/common.sh"
 
 echo -n "installing nginx :"
 yum install nginx -y    &>> /tmp/$COMPONENT.log
