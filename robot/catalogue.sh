@@ -9,7 +9,7 @@ curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -    
 stat $?
 
 echo -n "installing nodejs :"
-yum install nodejs -y
+yum install nodejs -y &>> "$LOGFILE"
 stat $?
 
 id $APPUSER &>> "$LOGFILE"
@@ -40,9 +40,9 @@ cd /home/$APPUSER/$COMPONENT
 npm install &>> "$LOGFILE"
 stat $?
 
-echo "configuring the $COMPONENT serice :"
-sed -i -e 's/MONGODB_DNSNAME/mongodb.roboshop.internal' /home/$APPUSER/$COMPONENT/systemd.service
-mv /home/$APPUSER/$COMPONENT/etc/systemd.service /etc/systemd/system/catalogue.service
+echo -n "configuring the $COMPONENT serice :"
+sed -i -e 's/MONGODB_DNSNAME/mongodb.roboshop.internal/' /home/$APPUSER/$COMPONENT/systemd.service &>> "$LOGFILE"
+mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/catalogue.service
 stat $?
 
 # echo -n "whitelisting mongo :"
