@@ -10,6 +10,7 @@ stat $?
 
 echo -n "installing nodejs :"
 yum install nodejs -y
+stat $?
 
 id $APPUSER &>> "$LOGFILE"
 if [ $? -ne 0 ] ; then
@@ -35,5 +36,5 @@ chown -R $APPUSER:$APPUSER /home/$APPUSER/$COMPONENT
 stat $?
 
 echo -n " Installing catalogue dependancies :"
-cd $COMPONENT
+cd /home/$APPUSER/$COMPONENT
 npm install &>> "$LOGFILE"
