@@ -42,8 +42,16 @@ stat $?
 
 echo -n "configuring the $COMPONENT serice :"
 sed -i -e 's/MONGODB_DNSNAME/mongodb.roboshop.internal/' /home/$APPUSER/$COMPONENT/systemd.service &>> "$LOGFILE"
-mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/catalogue.service
+mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
 stat $?
+
+echo -n "starting the component :"
+systemctl daemon-reload "$LOGFILE"
+systemctl enable catalogue "$LOGFILE"
+systemctl start catalogue "$LOGFILE"
+
+echo -e "\e[32m___________$COMPONENT Configuration complete_____________ \e[0m"
+
 
 # echo -n "whitelisting mongo :"
 # sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
