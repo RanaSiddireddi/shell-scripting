@@ -39,3 +39,11 @@ echo -n " Installing catalogue dependancies :"
 cd /home/$APPUSER/$COMPONENT
 npm install &>> "$LOGFILE"
 stat $?
+
+echo "configuring the $COMPONENT serice :"
+sed -i -e 's/MONGODB_DNSNAME/mongodb.roboshop.internal' /home/$APPUSER/$COMPONENT/systemd.service
+mv /home/$APPUSER/$COMPONENT/etc/systemd.service /etc/systemd/system/catalogue.service
+
+# echo -n "whitelisting mongo :"
+# sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
+# stat $?
