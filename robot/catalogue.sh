@@ -46,9 +46,10 @@ mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.serv
 stat $?
 
 echo -n "starting the component :"
-systemctl daemon-reload "$LOGFILE"
-systemctl enable catalogue "$LOGFILE"
-systemctl start catalogue "$LOGFILE"
+systemctl daemon-reload &>> "$LOGFILE"
+systemctl enable catalogue &>> "$LOGFILE"
+systemctl start catalogue &>> "$LOGFILE"
+stat $?
 
 echo -e "\e[32m___________$COMPONENT Configuration complete_____________ \e[0m"
 
