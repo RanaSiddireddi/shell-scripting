@@ -21,7 +21,7 @@ stat $?
 
 echo -n "starting $COMPONENT :"
 systemctl enable mongod
-systemctl start mongod
+systemctl restart mongod
 stat $?
 
 echo -n "downloading $COMPONENT schema :"
