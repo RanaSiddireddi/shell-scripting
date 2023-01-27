@@ -38,3 +38,4 @@ stat $?
 echo -n " Installing catalogue dependancies :"
 cd /home/$APPUSER/$COMPONENT
 npm install &>> "$LOGFILE"
+stat $?
