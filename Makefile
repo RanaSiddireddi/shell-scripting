@@ -1,6 +1,6 @@
 frontend:
 	bash robot/frontend.sh
-COMPONENT
+	
 mongodb:
 	bash robot/mongodb.sh
 
@@ -12,3 +12,5 @@ redis:
 
 user:
 	bash robot/user.sh
+
+
