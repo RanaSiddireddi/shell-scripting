@@ -16,3 +16,5 @@ user:
 cart:
 	bash robot/cart.sh
 
+mysql:
+	bash robot/mysql.sh
