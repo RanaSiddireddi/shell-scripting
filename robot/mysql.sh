@@ -17,21 +17,21 @@ systemctl enable mysqld
 systemctl start mysqld
 
 echo -n "fetching default password :"
-DEFAULT_ROOT_PWD=$(sudo grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')
+DEFAULT_ROOT_PWD=$(grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')
 stat $?
 
 
 echo "show databases" | mysql -uroot -pRoboShop@1 &>> "$LOGFILE"
 if [ $? -ne 0 ] ; then
     echo -n "resetting default root password :"
-    echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1' ;" | mysql -uroot -p${DEFAULT_ROOT_PWD}   &>> "$LOGFILE"
+    echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1';" | mysql --connect-expired-password -uroot -p${DEFAULT_ROOT_PWD}   &>> "$LOGFILE"
     stat $?
 fi
  
-echo "show plugins" | mysql -uroot -pRoboShop | grep validate_password; &>> "$LOGFILE"
+echo "show plugins" | mysql -uroot -pRoboShop | grep validate_password &>> "$LOGFILE"
 if [ $? -ne 0 ] ; then
     echo -n "uninstalling validate passowrd plugin :"
-    echo "uninstall plugin validate_password ;" | mysql -uroot -pRoboShop@1 &>> "$LOGFILE"
+    echo "uninstall plugin validate_password;" | mysql -uroot -pRoboShop@1 &>> "$LOGFILE"
     stat $?
 fi
 
