@@ -71,15 +71,15 @@ INSTALL_NPM() {
 }
 
 SERVICE_CONFIGURING() {
-    echo -n "configuring the $COMPONENT serice :"
+    echo -n "configuring the $COMPONENT service :"
     sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' /home/$APPUSER/$COMPONENT/systemd.service &>> "$LOGFILE"
     mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
     stat $?
 
     echo -n "starting the component :"
     systemctl daemon-reload &>> "$LOGFILE"
-    systemctl enable catalogue &>> "$LOGFILE"
-    systemctl restart catalogue &>> "$LOGFILE"
+    systemctl enable $COMPONENT &>> "$LOGFILE"
+    systemctl restart $COMPONENT &>> "$LOGFILE"
     stat $?
 
     echo -e "\e[32m___________$COMPONENT Configuration complete_____________ \e[0m"
