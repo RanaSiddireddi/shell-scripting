@@ -18,6 +18,23 @@ stat() {
     fi
 }
 
+JAVA() {
+    echo -s "installing Maven :"
+    yum install maven -y
+    stat $?
+
+    USER_ADD
+
+    DOWNLOAD_AND_EXTRACT
+
+    echo -n "generating the artifact :"
+    cd /home/$APPUSER/$COMPONENT
+    mvn clean package   &>> "$LOGFILE"
+    mv target/shipping-1.0.jar shipping.jar
+
+    SERVICE_CONFIGURING
+}
+
 NODEJS() {
     echo -n "configuring and installing nodejs repo : "
     curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -    &>> "$LOGFILE"
@@ -72,7 +89,7 @@ INSTALL_NPM() {
 
 SERVICE_CONFIGURING() {
     echo -n "configuring the $COMPONENT service :"
-    sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' /home/$APPUSER/$COMPONENT/systemd.service &>> "$LOGFILE"
+    sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/CARTENDPOINT/cart.roboshop.internal/' -e 's/DBHOST/mysql.roboshop.internal/' /home/$APPUSER/$COMPONENT/systemd.service &>> "$LOGFILE"
     mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
     stat $?
 
