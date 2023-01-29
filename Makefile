@@ -24,3 +24,6 @@ shipping:
 
 rabbitmq:
 	bash robot/rabbitmq.sh
+
+payment:
+	bash robot/payment.sh
