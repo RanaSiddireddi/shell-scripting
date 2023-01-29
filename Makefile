@@ -21,3 +21,6 @@ mysql:
 
 shipping:
 	bash robot/shipping.sh
+
+rabbitmq:
+	bash robot/rabbitmq.sh
