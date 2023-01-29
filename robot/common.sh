@@ -20,7 +20,7 @@ stat() {
 
 JAVA() {
     echo -s "installing Maven :"
-    yum install maven -y
+    yum install maven -y &>> "$LOGFILE"
     stat $?
 
     USER_ADD
