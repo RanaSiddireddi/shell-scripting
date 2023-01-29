@@ -35,6 +35,28 @@ JAVA() {
     SERVICE_CONFIGURING
 }
 
+PYTHON(){
+    echo -n "installing python :"
+    yum install python36 gcc python3-devel -y &>> "$LOGFILE"
+    stat $?
+
+    USER_ADD
+
+    DOWNLOAD_AND_EXTRACT
+
+    echo -n "installing dependancies :"
+    cd /home/$APPUSER/$COMPONENT
+    pip3 install -r requirements.txt
+    stat $?
+
+    USER_ID=$(id -u roboshop)
+    GROUP_ID=$(id -g roboshop)
+
+    # echo -n "updating the UID and GID in $COMPONENT.ini file:"
+    # sed -i -e "/s/"
+
+}
+
 NODEJS() {
     echo -n "configuring and installing nodejs repo : "
     curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -    &>> "$LOGFILE"
