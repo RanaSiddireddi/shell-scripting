@@ -28,6 +28,12 @@ rm -rf frontend-main README.md  &>> /tmp/$COMPONENT.log
 mv localhost.conf /etc/nginx/default.d/roboshop.conf    &>> /tmp/$COMPONENT.log
 stat $?
 
+for component in catalogue cart user shipping payment; do
+    echo -n "updating $component backend reverse proxy dns records :"
+    sed -i -e "/$component/s/localhost/$component.roboshop.internal/" /etc/nginx/default.d/roboshop.conf
+    stat $?
+done
+
 echo -n "starting nginx :"
 systemctl enable nginx  &>> /tmp/$COMPONENT.log
 systemctl restart nginx   &>> /tmp/$COMPONENT.log
