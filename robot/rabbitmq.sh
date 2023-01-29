@@ -18,7 +18,7 @@ systemctl enable rabbitmq-server &>> "$LOGFILE"
 systemctl restart rabbitmq-server &>> "$LOGFILE"
 stat $?
 
-sudo rabbitmqctl list-users | grep $APPUSER &>> "$LOGFILE"
+sudo rabbitmqctl list_users | grep $APPUSER &>> "$LOGFILE"
 if [ $? -ne 0 ] ; then
     echo -n "creating $COMPONENT user account :"
     rabbitmqctl add_user roboshop roboshop123 &>> "$LOGFILE"
