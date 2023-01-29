@@ -119,7 +119,7 @@ SERVICE_CONFIGURING() {
     mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
     stat $?
 
-    echo -n "starting the component :"
+    echo -n "starting the $COMPONENT :"
     systemctl daemon-reload &>> "$LOGFILE"
     systemctl enable $COMPONENT &>> "$LOGFILE"
     systemctl restart $COMPONENT &>> "$LOGFILE"
