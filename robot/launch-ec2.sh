@@ -5,7 +5,7 @@ COMPONENT=$1
 ENV=$2
 HOSTED_ZONE_ID="Z08504361Q1M69BII5VS1"
 
-if [ -z "$COMPONENT" ]; then
+if [ -z "$COMPONENT" ] && [ -z "$ENV" ]; then
     echo -e "\e[31m component name is required \n sample usage: \n\n\t\t bash launch-ec2.sh componentname \e[0m "
     exit 1
 fi
