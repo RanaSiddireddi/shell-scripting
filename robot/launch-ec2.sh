@@ -1,14 +1,14 @@
 #!/bin/bash
 
-if [ -z "$COMPONENT" ]; then
-    echo -e "\e[31m component name is required \n sample usage: \n\n\t\t bash launch-ec2.sh componentname \e[0m "
-    exit 1
-fi
-
 
 COMPONENT=$1
 ENV=$2
 HOSTED_ZONE_ID="Z08504361Q1M69BII5VS1"
+
+if [ -z "$COMPONENT" ]; then
+    echo -e "\e[31m component name is required \n sample usage: \n\n\t\t bash launch-ec2.sh componentname \e[0m "
+    exit 1
+fi
 
 AMI_ID=$(aws ec2 describe-images --filters "Name=name,Values=b52-ansible-dev-20Jan2023" --region us-east-1 | jq .Images[].ImageId | sed -e 's/"//g')
 SG_ID=$(aws ec2 describe-security-groups --filters Name=group-name,Values=b52-allow-all --region us-east-1 |jq .SecurityGroups[].GroupId | sed -e 's/"//g')
